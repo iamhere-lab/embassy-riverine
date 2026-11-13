@@ -1,6 +1,12 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Embassy Riverine</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 <meta name="description" content="Embassy Riverine — exclusive 4 & 4.5 BHK villa homes in North Yelahanka, Bengaluru, within the 85.5-acre Embassy Origins township. Starting ₹14 Cr*. Get the price sheet, floor plans and site-visit slots.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -554,7 +560,8 @@ body{font-weight:400;font-size:16px}
 .hs-price .amt{font-family:var(--display);font-weight:600}
 @media(max-width:760px){.hs-eyebrow{margin-top:20px;font-size:10.5px;letter-spacing:.34em}.hs-word{font-size:58px}}
 </style>
-
+</head>
+<body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-star" viewBox="0 0 32 32"><path d="M16 9l2 4.2 4.6.6-3.3 3.2.8 4.6L16 19.4l-4.1 2.2.8-4.6-3.3-3.2 4.6-.6z"/><path d="M6 6l1 2 2 .3-1.5 1.4.4 2L6 10.7 4.1 11.7l.4-2L3 8.3 5 8zM26 6l1 2 2 .3-1.5 1.4.4 2-1.9-1-1.9 1 .4-2L23 8.3 25 8zM7 24l.7 1.4 1.5.2-1.1 1 .3 1.5L7 27.4l-1.4.7.3-1.5-1.1-1 1.5-.2zM25 24l.7 1.4 1.5.2-1.1 1 .3 1.5-1.4-.7-1.4.7.3-1.5-1.1-1 1.5-.2z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 32 32"><path d="M16 28s9-8.5 9-15a9 9 0 0 0-18 0c0 6.5 9 15 9 15z"/><circle cx="16" cy="13" r="3.2"/></symbol>
@@ -815,9 +822,9 @@ body{font-weight:400;font-size:16px}
 <script>
 /* ---------- CONFIG: fill these in before going live ---------- */
 var CONFIG = {
-  phone: "+917406917711",            // e.g. "+919876543210" — empty routes Call buttons to the form
-  phoneLabel: "+91 74069 17711",       // e.g. "+91 98765 43210" — shown in the header pill
-  whatsapp: "",         // e.g. "919876543210" (no +)
+  phone: "+919567011331",            // e.g. "+919876543210" — empty routes Call buttons to the form
+  phoneLabel: "+91 95670 11331",       // e.g. "+91 98765 43210" — shown in the header pill
+  whatsapp: "919567011331",         // e.g. "919876543210" (no +)
   leadEndpoint: "",     // webhook URL (Pabbly / Leadrat / Apps Script). Receives JSON POST.
   gtmId: "",            // e.g. "GTM-XXXXXXX"
   agentRera: "",        // channel partner name + RERA for the footer disclaimer
@@ -841,7 +848,7 @@ var CONFIG = {
 
   $$('.js-call').forEach(function(a){if(CONFIG.phone){a.href='tel:'+CONFIG.phone}else{a.addEventListener('click',function(e){e.preventDefault();openModal(a.dataset.src,'','Request a Call Back')})}a.addEventListener('click',function(){track('click_call',{cta:a.dataset.src})})});
   $$('.js-wa').forEach(function(b){b.addEventListener('click',function(){track('click_whatsapp',{cta:b.dataset.src});
-    if(CONFIG.whatsapp){window.location.href='https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Hi, I am interested in Embassy Riverine villa homes. Please share the price sheet.')}else{openModal(b.dataset.src,'','Get Details on WhatsApp')}})});
+    if(CONFIG.whatsapp){var wa=document.createElement('a');wa.href='https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent("Hi, I'm interested in Embassy Riverine, the 4 & 4.5 BHK villa homes at Embassy Origins, North Yelahanka. Please share the price sheet, floor plans and site-visit details.");wa.target='_blank';wa.rel='noopener';document.body.appendChild(wa);wa.click();wa.remove()}else{openModal(b.dataset.src,'','Get Details on WhatsApp')}})});
 
   var tpl=function(id,cta){return ''+
     '<input id="'+id+'-name" name="fullname" type="text" autocomplete="name" placeholder="Name" required>'+
@@ -948,4 +955,5 @@ var CONFIG = {
 })();
 </script>
 
-</body></html>
+</body>
+</html>

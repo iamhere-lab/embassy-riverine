@@ -835,7 +835,7 @@ var CONFIG = {
   gtmId: "",            // e.g. "GTM-XXXXXXX"
   agentRera: "",        // channel partner name + RERA for the footer disclaimer
   popupDelayMs: 20000,  // auto-open the price popup once per visit; 0 disables
-  thankYouUrl: ""       // optional redirect after submit
+  thankYouUrl: "/thank-you.html"       // redirect after submit (fires the Google Ads conversion)
 };
 </script>
 <script>
@@ -881,7 +881,8 @@ var CONFIG = {
     for(var k in utm)data[k]=utm[k];
     var btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending…';
     var finish=function(){track('lead_submit',{form:data.form,cta:data.cta,config:data.config});
-      if(CONFIG.thankYouUrl){location.href=CONFIG.thankYouUrl;return}
+      try{sessionStorage.setItem('er_lead','1');sessionStorage.setItem('er_name',name.split(' ')[0]);sessionStorage.setItem('er_phone',cc+' '+phone)}catch(e){}
+      if(CONFIG.thankYouUrl){setTimeout(function(){location.href=CONFIG.thankYouUrl},250);return}
       f.innerHTML='<div class="done"><h4>Thank you, '+name.split(' ')[0].replace(/[<>&"]/g,'')+'</h4><p style="font-size:14px;color:var(--ink-2)">Our team will call you on '+cc+' '+phone+' with the Embassy Riverine price sheet and floor plans.</p></div>';
       try{sessionStorage.setItem('er_lead','1')}catch(e){}};
     if(!CONFIG.leadEndpoint){finish();return}

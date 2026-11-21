@@ -14,6 +14,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 <meta name="description" content="Embassy Riverine — exclusive 4 & 4.5 BHK villa homes in North Yelahanka, Bengaluru, within the 85.5-acre Embassy Origins township. Starting ₹14 Cr*. Get the price sheet, floor plans and site-visit slots.">
+<link rel="prefetch" href="/thank-you.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,600&family=Cormorant:ital,wght@0,500;1,500&family=Figtree:wght@300;400;500;600;700&display=swap">
@@ -882,11 +883,14 @@ var CONFIG = {
     var btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending…';
     var finish=function(){track('lead_submit',{form:data.form,cta:data.cta,config:data.config});
       try{sessionStorage.setItem('er_lead','1');sessionStorage.setItem('er_name',name.split(' ')[0]);sessionStorage.setItem('er_phone',cc+' '+phone)}catch(e){}
-      if(CONFIG.thankYouUrl){setTimeout(function(){location.href=CONFIG.thankYouUrl},250);return}
+      if(CONFIG.thankYouUrl){location.href=CONFIG.thankYouUrl;return}
       f.innerHTML='<div class="done"><h4>Thank you, '+name.split(' ')[0].replace(/[<>&"]/g,'')+'</h4><p style="font-size:14px;color:var(--ink-2)">Our team will call you on '+cc+' '+phone+' with the Embassy Riverine price sheet and floor plans.</p></div>';
       try{sessionStorage.setItem('er_lead','1')}catch(e){}};
     if(!CONFIG.leadEndpoint){finish();return}
-    try{fetch(CONFIG.leadEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).then(finish,finish)}catch(e){finish()}
+    // Don't hold the visitor on Pabbly's reply: keepalive lets the request finish after the page moves on.
+    var done=false,go=function(){if(!done){done=true;finish()}};
+    try{fetch(CONFIG.leadEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).then(go,go)}catch(e){go()}
+    setTimeout(go,600);
   }
 
   function openModal(src,cfg,title){currentCta=src||'';lastFocus=document.activeElement;modal.hidden=false;document.body.style.overflow='hidden';
